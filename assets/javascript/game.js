@@ -9,7 +9,7 @@ var losses = 0;
 var numGuesses=0;
  
 // Creating a variable to hold the number of user guesses remaining.
-var userGuessRemain = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var userGuessRemain =9; // ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
   
 // FUNCTIONS
 // ==============================================================================
@@ -17,28 +17,37 @@ var userGuessRemain = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 // This function is run whenever the user presses a key.
     document.onkeyup = function(event) {
                                
-                // Determines which key was pressed by user.
-                var userGuess = event.key;
+        // Determines which key was pressed by user.
+        var userGuess = event.key;
+
+        // Computer randomly chooses a variable from the letters array.
+        var computerSelection = letters[Math.floor(Math.random() * letters.length)];
+        console.log
+        
+        // This logic determines the outcome of the game (win/loss), and increments the appropriate number
  
-                // Computer randomly chooses a variable from the letters array.
-                var computerSelection = letters[Math.floor(Math.random() * letters.length)];
-               
-                
-                // This logic determines the outcome of the game (win/loss), and increments the appropriate number
- 
-        for(numGuesses=0; numGuesses<10; numGuesses++){               
-        if (userGuess = computerSelection){
-                        (wins++);
-        } else if (userGuess != computerSelection){
-                        (numGuesses++ && userGuessRemain--);
-        console.log(userGuessRemain);
-                    }
-                }
+        for(numGuesses=0; numGuesses<10; numGuesses++) {
+            if (userGuess = computerSelection){
+                wins++;
+            } else if (userGuess != computerSelection){
+                numGuesses++;
+                userGuessRemain--;
+            }
+
+            console.log(userGuessRemain);
+        }
 
         // Function that updates the number of wins...
-        function updatewins() {
-        document.querySelector("#wins").innerHTML = "Wins: " + wins;
+        function updateWins() {
+            document.querySelector("#wins").innerHTML = "Wins: " + wins;
         }
+
+        function updateLosses() {
+            document.querySelector("#losses").innerHTML = "Losses: " + losses;
+        }
+
+        updateWins();
+        updateLosses();
     };   
  
                
