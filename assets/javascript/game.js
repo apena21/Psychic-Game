@@ -3,40 +3,55 @@
 var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
 "t", "u", "v", "w", "x", "y", "z"];
  
-// Creating variables to hold the number of wins, losses, and guesses starting at zero. 
+// Creating variables to hold the number of wins, losses, guesses starting at zero, and a history of the letters guessed. 
 var wins = 0;
 var losses = 0;
 var numGuesses=0;
+var lettersGuessed=0;
  
 // Creating a variable to hold the number of user guesses remaining.
-var userGuessRemain =9; // ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var userGuessRemain =9; 
   
 // FUNCTIONS
-// ==============================================================================
+// ==========================================================================
  
 // This function is run whenever the user presses a key.
     document.onkeyup = function(event) {
                                
         // Determines which key was pressed by user.
         var userGuess = event.key;
+        
 
         // Computer randomly chooses a variable from the letters array.
         var computerSelection = letters[Math.floor(Math.random() * letters.length)];
         console.log
+
+        // function to reset guesses after a game ends
+
+        function resetGuesses() {
+            document.getElementById("numGuesses").value = 0;
+        }
         
+        function resetLettersGuessed() {
+            document.getElementById("lettersGuessed").value = "";
+        }
+
+
         // This logic determines the outcome of the game (win/loss), and increments the appropriate number
  
         for(numGuesses=0; numGuesses<10; numGuesses++) {
             if (userGuess = computerSelection){
                 wins++;
+                document.write(event.key)
             } else if (userGuess != computerSelection){
                 numGuesses++;
                 userGuessRemain--;
+                document.write(event.key);
             }
-
+            console.log(userGuess);
             console.log(userGuessRemain);
         }
-
+    }
         // Function that updates the number of wins...
         function updateWins() {
             document.querySelector("#wins").innerHTML = "Wins: " + wins;
@@ -46,9 +61,29 @@ var userGuessRemain =9; // ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
             document.querySelector("#losses").innerHTML = "Losses: " + losses;
         }
 
+       function updateGuessesRemaining() {
+            document.querySelector("#userGuessRemain").innerHTML = "Guesses left: " + userGuessRemain;
+        }
+
+        function updateYourGuessesSoFar() {
+            document.querySelector("#lettersGuessed").innerHTML = "Your guesses so far: " + lettersGuessed;
+        }
+
+
+
+        /*function updateUserGuesses() {
+            if (userGuess!=null)
+            {
+            x="Hello " + person + "! How are you today?";
+            document.getElementById("demo").innerHTML=x;
+            }
+          }
+        //}
+        */
         updateWins();
         updateLosses();
-    };   
+        updateGuessesRemaining();
+        updateYourGuessesSoFar();
  
                
                
