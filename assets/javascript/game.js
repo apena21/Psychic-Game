@@ -6,8 +6,8 @@ var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", 
 // Creating variables to hold the number of wins, losses, guesses starting at zero, and a history of the letters guessed. 
 var wins = 0;
 var losses = 0;
-var numGuesses=0;
-var lettersGuessed=0;
+//var userGuessRemain=0;
+var lettersGuessed;
  
 // Creating a variable to hold the number of user guesses remaining.
 var userGuessRemain =9; 
@@ -29,57 +29,56 @@ var userGuessRemain =9;
         // function to reset guesses after a game ends
 
         function resetGuesses() {
-            document.getElementById("numGuesses").value = 0;
+            document.getElementById("userGuessRemain").value = 0;
         }
         
         function resetLettersGuessed() {
             document.getElementById("lettersGuessed").value = "";
         }
 
-
+        
         // This logic determines the outcome of the game (win/loss), and increments the appropriate number
- 
-        for(numGuesses=0; numGuesses<10; numGuesses++) {
-            if (userGuess = computerSelection){
+        for (userGuessRemain > 0) {
+            
+        
+            // for(numGuesses=0; numGuesses<10; numGuesses++) {
+          if (userGuess = computerSelection){
                 wins++;
-                document.write(event.key)
-            } else if (userGuess != computerSelection){
-                numGuesses++;
+        }   else if (userGuess != computerSelection);{
+                userGuessRemain++;
                 userGuessRemain--;
-                document.write(event.key);
-            }
+        }   else if (userGuessRemain = 0) {
+                losses++;
+           //     document.write(event.key);
+           //     document.getElementById("userGuess").onkeyup = function()
+           //
+            
+         }
+        
             console.log(userGuess);
             console.log(userGuessRemain);
         }
-    }
+    
         // Function that updates the number of wins...
         function updateWins() {
             document.querySelector("#wins").innerHTML = "Wins: " + wins;
         }
 
+        // Function that updates the number of losses...
         function updateLosses() {
             document.querySelector("#losses").innerHTML = "Losses: " + losses;
         }
 
+        // Function that updates the number of guesses remaining...
        function updateGuessesRemaining() {
             document.querySelector("#userGuessRemain").innerHTML = "Guesses left: " + userGuessRemain;
         }
 
+        //function that track your guesses
         function updateYourGuessesSoFar() {
-            document.querySelector("#lettersGuessed").innerHTML = "Your guesses so far: " + lettersGuessed;
+            document.querySelector("#lettersGuessed").appendChild = "Your guesses so far: " + lettersGuessed;
         }
 
-
-
-        /*function updateUserGuesses() {
-            if (userGuess!=null)
-            {
-            x="Hello " + person + "! How are you today?";
-            document.getElementById("demo").innerHTML=x;
-            }
-          }
-        //}
-        */
         updateWins();
         updateLosses();
         updateGuessesRemaining();
